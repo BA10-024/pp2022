@@ -6,6 +6,7 @@ course=[]
 mark=[]
 checkcredit=[]
 checkmark=[]
+GPA=[]
 class students():
     def __init__(self,id,name,dob):
         self.id=id
@@ -95,9 +96,14 @@ def Cal_averageGPA(studentid):
     credit=np.array([checkcredit])
     mark=np.array([checkmark])
     if studentid in [i[0] for i in student]:
-    # calculate gpa
+        for i in range(student.__len__()):
+            sum_credits=np.sum(credit)
+            sum_mark=np.sum(np.multiply(sum_credits,sum_mark))
+            gpa=sum_mark/sum_credits
+        GPA.append(gpa)
 def sort_GPA():
-    pass
+    sorted=np.flip(np.sort(GPA))
+    print("List students by GPA descending:  ",sorted)
 
 list_student()
 list_course()
@@ -111,4 +117,3 @@ for i in range(mark.__len__()):
     print("\n")
 studentid=input("Enter the student ID you want to calculate average GPA: ")
 Cal_averageGPA(studentid)
-sort_GPA()
